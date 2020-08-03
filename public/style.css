@@ -1,4 +1,4 @@
-body{
+/* body{
     margin:0;
     padding:0;
     overflow: hidden;
@@ -11,7 +11,7 @@ header{
     width:100%;
     display: flex;
     color:#fff;
-}
+} */
 
 .flash-logo{
     height:60px;
@@ -20,11 +20,11 @@ header{
     margin-right: 15px;
 }
 
-
+/* 
 section{
     padding: 15px;
     width:calc(100% - 45px);
-}
+} */
 
 .logo img{
     height: 35px;
@@ -116,6 +116,38 @@ section{
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+@media(max-width:980px){
+    .flash-comments{
+        width: 100%;
+    }
+
+    .flash-comments button, .flash-comments textarea{
+        width:100%;
+        height: 30px;
+        margin-top: 5px;
+    }
+
+    .flash-comments .comment-form{
+        flex-direction: column;
+        height: 120px;
+        display: flex;
+    }
+
+
+    .flash-comments .comment-form .right-side{
+        flex:3;
+        padding-right: 5px;
+    }
+
+    /* h2{
+        font-size: 20px;
+    } */
+
+    .post iframe{
+        width: 100% !important;
+        height: 250px !important;
+    }
+}
 
 .flash-comments .user-icon{
     flex: 0 80px;
