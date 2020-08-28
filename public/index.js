@@ -6,6 +6,7 @@ var mainApp ={};
     if (user) {
       // User is signed in.
       uid = user.uid;
+      console.log(uid)
     }else{
       //redirect to login page
       uid = null;

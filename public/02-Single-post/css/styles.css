@@ -256,7 +256,7 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 4. SINGLE POST
 --------------------------------- */
 
-.blog-area{ padding: 370px 0 50px; }
+.blog-area{ padding: 100px 0 50px; }
 
 .blog-posts .single-post{ margin-bottom: 60px; }
 
