@@ -149,7 +149,6 @@ var app_firebase = {};
 
 
     
-    
 
 
     
@@ -168,7 +167,7 @@ var app_firebase = {};
   //     });
   // });
   // real-time listener
-  db.collection("blogs").onSnapshot((snapshot) => {
+  db.collection("blogs").orderBy('Date').onSnapshot((snapshot) => {
       let changes = snapshot.docChanges();
       changes.forEach((change) => {
         if (change.type == "added") {
