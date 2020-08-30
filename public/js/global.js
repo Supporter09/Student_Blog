@@ -127,7 +127,8 @@ btn.addEventListener('click', (e)=>{
     title.value ='';
     content.value ='';
     
-
+    alert('Posted!')
+    window.location.href('index.html')
   })
 
 // upload file

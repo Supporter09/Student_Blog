@@ -31,6 +31,10 @@ var app_firebase = {};
   }
 
   
+//check login 
+var user = firebase.auth().currentUser;
+console.log(user)
+  
 
   var blog_post_list = document.querySelector('#blog-posts')
   // create element & render cafe
@@ -51,6 +55,8 @@ var app_firebase = {};
         .catch(function (error) {
           console.log(error)
         })
+
+
     
 
     //Create Element
@@ -178,6 +184,5 @@ var app_firebase = {};
         }
       });
     });
-
 
 
