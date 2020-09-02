@@ -80,8 +80,10 @@ var firebaseConfig = {
   today = mm + '/' + dd + '/' + yyyy;
 
 
-  
+
 let specific_id = Date.now()
+
+
 btn.addEventListener('click', (e)=>{
     e.preventDefault();
 
@@ -115,20 +117,27 @@ btn.addEventListener('click', (e)=>{
     
       });
     });
-    db.collection('blogs').add({
+    
+    if(author.value == '' && title.value =='' && content.value == '') {
+      alert("You must insert data in our field")
+    }else{
+      db.collection('blogs').add({
         author: author.value,
         title: title.value,
         content : content.value,
         Date : today,
         id:specific_id
       });
+      alert('Posted!')
+    }
+    
     
     author.value ='';
     title.value ='';
     content.value ='';
     
-    alert('Posted!')
-    window.location.href('index.html')
+    
+    // window.location.href('index.html')
   })
 
-// upload file
+// Không thể chạy window.location.href('index.html') ở trong hàm click vì nó sẽ chạy trc khi dữ liệu được up lên firebase
