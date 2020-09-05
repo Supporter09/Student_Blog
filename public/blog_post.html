@@ -29,43 +29,55 @@
 	<link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+	
+	<!-- FireBase -->
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
 </head>
 <body>
 
 	<header>
 
-	
 		
-
-		<div class="bottom-area">
-
-			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
-
-			<ul class="main-menu visible-on-click" id="main-menu">
-				<li class="drop-down"><a href="index.html">HOME<i class="ion-ios-arrow-down"></i></a>
-
-					<ul class="drop-down-menu">
-						<li><a href="#">FEATURED</a></li>
-						<li><a href="03-About-me.html">ABOUT</a></li>
-						<li class="drop-down"><a href="#!">CATEGORIES<i class="ion-ios-arrow-right"></i></a>
-							<ul class="drop-down-menu drop-down-inner">
-								<li><a href="#">FEATURED</a></li>
-								<li><a href="03-About-me.html">ABOUT</a></li>
-								<li><a href="#">CATEGORIES</a></li>
-							</ul>
-						</li>
-					</ul>
-
-				</li>
-				<li><a href="#">FEATURED</a></li>
-				<li><a href="03-About-me.html">ABOUT</a></li>
-				<li><a href="#">CATEGORIES</a></li>
-				<li><a href="#">CONTACT</a></li>
-			</ul><!-- main-menu -->
-
-		</div><!-- conatiner -->
-	</header>
+		<div>
+			<div class="bottom-area">
+		
+				<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
+		
+				<ul class="main-menu visible-on-click" id="main-menu">
+					<li class="drop-down"><a href="index.html">HOME<i class="ion-ios-arrow-down"></i></a>
+		
+						<ul class="drop-down-menu">
+							
+							<li><a href="03-About-me.html">ABOUT</a></li>
+							<li class="drop-down"><a href="#!">CATEGORIES<i class="ion-ios-arrow-right"></i></a>
+								<ul class="drop-down-menu drop-down-inner">
+									
+									<!-- <li><a href="03-About-me.html">ABOUT</a></li> -->
+									<li><a href="up_blog.html">POST BLOG</a></li>
+								</ul>
+							</li>
+						</ul>
+		
+					</li>
+					
+					<li><a href="03-About-me.html">ABOUT</a></li>
+					<li><a href="up_blog.html">POST BLOG</a></li>
+					<!-- <li><a href="#">CONTACT</a></li> -->
+					<li class="drop-down"><a  id="sign_in_btn" >SIGN IN<i class="ion-ios-arrow-right"></i></a>
+						<ul class="drop-down-menu" id="drop-down-menu">
+							
+						</ul>
+					</li>
+					
+				</ul><!-- main-menu -->
+		
+			</div><!-- conatiner -->
+		</header>
 
 	<section class="blog-area">
 		<div class="container" style="display: flex;">
@@ -402,6 +414,60 @@
 
 
 	<!-- SCIPTS -->
+
+	<script src="firebase.js"></script>
+	<script src="index.js"></script>
+	
+	<script>
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				// User logged in already or has just logged in.
+				console.log(user);
+				const sign_in_btn = document.querySelector("#sign_in_btn");
+			
+				sign_in_btn.innerHTML = user.email
+				const sign_in_dropdown_list = document.querySelector("#drop-down-menu")
+				
+				let drop_down_component = document.createElement('li')
+				let drop_down_component_a = document.createElement('a')
+				
+				drop_down_component_a.setAttribute('id','log_out_btn')
+				drop_down_component_a.setAttribute('href','#!')
+				drop_down_component.setAttribute('id','log_out_btn')
+				drop_down_component_a.innerHTML='LOG OUT'
+				drop_down_component.appendChild(drop_down_component_a)
+				sign_in_dropdown_list.appendChild(drop_down_component)
+
+
+
+				let sign_out_btn = document.querySelector('#log_out_btn')
+					sign_out_btn.addEventListener('click', ()=>{
+						firebase.auth().signOut()
+							.then(function () {
+								// Sign-out successful.
+								console.log("sign out")
+							}).catch(function (error) {
+								// An error happened.
+							});
+					})
+
+			} else {
+				// User not logged in or has just logged out.
+				console.log("null")
+				const sign_in_btn = document.querySelector("#sign_in_btn");
+				sign_in_btn.innerHTML ='SIGN IN/UP'
+				sign_in_btn.setAttribute('href','login.html')
+				
+				const sign_in_dropdown_list = document.querySelector("#drop-down-menu")
+				const log_out_btn = document.querySelector('#log_out_btn')
+				sign_in_dropdown_list.removeChild(log_out_btn)
+
+
+			}
+			});
+		
+	</script>
+
 	<script type="text/javascript" src="https://js.pusher.com/3.2/pusher.min.js"></script>
 	<script type="text/javascript" src="./app.js"></script>
 
