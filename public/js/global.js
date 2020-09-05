@@ -24,6 +24,7 @@
     
                     if (fileName.substring(3,11) == 'fakepath') {
                         fileName = fileName.substring(12);
+                        // fileInput.reset()
                     }
     
                     if(fileName == "") {
@@ -86,7 +87,7 @@ let specific_id = Date.now()
 
 btn.addEventListener('click', (e)=>{
     e.preventDefault();
-
+    let file_input = document.querySelector(".input-file")
     const file = document.querySelector('input[type=file]').files[0];
     const metadata = { contentType: 'image/jpeg' }; // or whatever you want
     const storageRef = firebase.storage().ref();
@@ -135,7 +136,7 @@ btn.addEventListener('click', (e)=>{
     author.value ='';
     title.value ='';
     content.value ='';
-    
+    // file_input.reset();
     
     // window.location.href('index.html')
   })

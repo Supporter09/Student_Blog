@@ -48,7 +48,8 @@ console.log(user)
     db.collection("images").where("id","==",specific_id).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               let image_src = doc.data().img;
-              image_tag.setAttribute("src",image_src)
+              image_tag.setAttribute("src",image_src);
+              image_tag.setAttribute("style","background-size: cover;max-height: 414px;overflow:hidden;")
               
             });
         })
